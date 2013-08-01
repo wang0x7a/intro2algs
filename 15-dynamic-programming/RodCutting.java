@@ -57,6 +57,28 @@ public class RodCutting {
       return r[length]; 
    }
 
+   public static int[][] extendedBottomUpRod(int[] prices, int length) {
+      int[] r = new int[length + 1];
+      int[] s = new int[length + 1];
+      r[0] = 0;
+
+      for (int j = 1; j <= length; j++) {
+         int q = Integer.MIN_VALUE;
+         for (int i = 1; i <= j; i++) {
+            if (q < prices[i] + r[j - i]) {
+               q = prices[i] + r[j - i];
+               s[j] = i;
+            }
+         }
+         r[j] = q;
+      }
+
+      int[][] res = new int[2][length + 1];
+      res[0] = r;
+      res[1] = s;
+      return res;
+   }
+
    public static void main(String[] args) {
       //for (int i = 1; i <= 10; i++) {
       //   System.out.println(i + " itches: " + RodCutting.cutRod(prices, i));
@@ -65,5 +87,10 @@ public class RodCutting {
       System.out.println(length + " itches (naive): " + RodCutting.cutRod(prices, length));
       System.out.println(length + " itches (DP): " + RodCutting.cutRodMemoized(prices, length));
       System.out.println(length + " ithces (Bottom Up)" + RodCutting.cutRodBottomUp(prices, length));
+
+      int[][] res = RodCutting.extendedBottomUpRod(prices, length);
+      for (int i = 0; i <= length; i++) {
+         System.out.println(i + " " + res[0][i] + " " + res[1][i]);
+      }
    }
 }
