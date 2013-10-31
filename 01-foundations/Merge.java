@@ -1,4 +1,7 @@
 public class Merge {
+
+   private Merge() {}
+
    private static void merge(int[] a,  int lo, int mid, int hi) {
       // precondition
       assert isSorted(a, lo, mid);
