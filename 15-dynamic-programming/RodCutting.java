@@ -84,9 +84,12 @@ public class RodCutting {
       //   System.out.println(i + " itches: " + RodCutting.cutRod(prices, i));
       //}
       int length = Integer.parseInt(args[0]);
-      System.out.println(length + " itches (naive): " + RodCutting.cutRod(prices, length));
-      System.out.println(length + " itches (DP): " + RodCutting.cutRodMemoized(prices, length));
-      System.out.println(length + " ithces (Bottom Up)" + RodCutting.cutRodBottomUp(prices, length));
+      System.out.println(length + " itches (naive): " + 
+          RodCutting.cutRod(prices, length));
+      System.out.println(length + " itches (DP): " + 
+          RodCutting.cutRodMemoized(prices, length));
+      System.out.println(length + " ithces (Bottom Up)" + 
+          RodCutting.cutRodBottomUp(prices, length));
 
       int[][] res = RodCutting.extendedBottomUpRod(prices, length);
       for (int i = 0; i <= length; i++) {
