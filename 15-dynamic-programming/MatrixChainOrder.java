@@ -46,9 +46,23 @@ public class MatrixChainOrder {
     }
   }
 
+  private static void printOptimalOrderX(int[][][] r, int i, int j) {
+    if (i == j) System.out.print(i); 
+    else {
+      int k = r[1][i][j];
+      System.out.print("(");
+
+      printOptimalOrderX(r, i, k);
+      printOptimalOrderX(r, k + 1, j);
+      
+      System.out.print(")");
+    }
+  }
+
   public static void printOptimalOrder(int[][][] r) {
     int n = r[0][0].length;
-    printOptimalOrder(r, 1, n - 1);
+    //printOptimalOrder(r, 1, n - 1);
+    printOptimalOrderX(r, 1, n - 1);
     System.out.println();
   }
 
