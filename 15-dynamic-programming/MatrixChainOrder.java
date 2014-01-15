@@ -11,11 +11,15 @@ public class MatrixChainOrder {
 
     for (int i = 0; i < n; i++) m[i][i] = 0;
 
-    for (int l = 2; l < n; l++) {               // l is the size of a subproblem 
-      for (int i = 1; i < n - l + 1; i++) {     // i is the start index of a subproblem
-        int j = i + l - 1;                      // j is the end index of a subproblem
+    // l is the size of a subproblem 
+    for (int l = 2; l < n; l++) {
+      // i is the start index of a subproblem
+      for (int i = 1; i < n - l + 1; i++) {
+        // j is the end index of a subproblem
+        int j = i + l - 1;
         
-        // initialize each cell of m as infinity, so that each subproblem must be solved once.
+        // initialize each cell of m as infinity, so that each subproblem 
+        // must be solved once.
         m[i][j] = Integer.MAX_VALUE; 
 
         for (int k = i; k < j; k++) {
