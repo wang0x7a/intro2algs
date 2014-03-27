@@ -64,6 +64,9 @@ public class RodCutting {
 
   public static void bottomUpDPEx(int n, int[] r, int[] s) {
     for (int i = 1; i <= n; i++) {
+      // unlike bottomUpDP, we cannot initialize res as prices[i] here,
+      // since length i should also be taken into consideration in the 
+      // inner loop.
       int res = Integer.MIN_VALUE;
       int tmp;
       for (int j = 1; j <= i; j++) {
