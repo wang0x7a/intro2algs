@@ -1,4 +1,4 @@
-public class RodCutting {
+public class RodCutting2 {
   public static int[] prices = {0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
 
   public static int recursive(int n) {
