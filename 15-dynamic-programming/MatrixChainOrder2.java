@@ -56,6 +56,12 @@ public class MatrixChainOrder2 {
     return res;
   }
 
+  public static void bottomUpDP() {
+  }
+
+  public static void bottomUpDPHelper(int[][] r, int[][] s) {
+  }
+
   public static void print(int[][] s) {
     print(1, s[0].length - 1, s);
   }
