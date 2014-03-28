@@ -21,9 +21,9 @@ public class MatrixChainOrder2 {
 
   public static int topDownDP() {
     int n = chain.length;
-    int[][] r = new int[n + 1][n + 1];
-    for (int i = 0; i <= n; i++)
-      for (int j = 0; j <= n; j++) {
+    int[][] r = new int[n][n];
+    for (int i = 0; i < n; i++)
+      for (int j = 0; j < n; j++) {
         if (i == j)
           r[i][j] = 0;
         else
