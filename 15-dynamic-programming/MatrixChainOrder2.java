@@ -21,6 +21,7 @@ public class MatrixChainOrder2 {
 
   public static int topDownDP() {
     int n = chain.length;
+    int[][] s = new int[n][n];
     int[][] r = new int[n][n];
     for (int i = 0; i < n; i++)
       for (int j = 0; j < n; j++) {
@@ -30,23 +31,47 @@ public class MatrixChainOrder2 {
           r[i][j] = Integer.MIN_VALUE;
       }
 
-    return topDownDPHelper(1, n - 1, r);
+    return topDownDPHelper(1, n - 1, r, s);
   }
 
-  private static int topDownDPHelper(int i, int j, int[][] r) {
+  private static int topDownDPHelper(int i, int j, int[][] r, int[][] s) {
     if (r[i][j] >= 0)
       return r[i][j];
 
     int res = Integer.MAX_VALUE;
     for (int k = i; k < j; k++) {
-      int tmp = topDownDPHelper(i, k, r) + topDownDPHelper(k + 1, j, r)
+      int tmp = topDownDPHelper(i, k, r, s) + topDownDPHelper(k + 1, j, r, s)
               + chain[i - 1] * chain[k] * chain[j];
       if (tmp < res) {
         res = tmp;
         r[i][j] = res;
+        s[i][j] = k;
       }
     }
+    if (i == 1 && j == r[0].length - 1) {
+      MatrixChainOrder2.print(s);
+      System.out.println();
+    }
+
     return res;
+  }
+
+  public static void print(int[][] s) {
+    print(1, s[0].length - 1, s);
+  }
+
+  private static void print(int i, int j, int[][] s) {
+    if (i == j) {
+      System.out.print(i);
+      return;
+    }
+
+    System.out.print("(");
+    int k = s[i][j];
+    print(i, k, s);
+    print(k + 1, j, s);
+    System.out.print(")");
+    return;
   }
 
   public static void main(String[] args) {
