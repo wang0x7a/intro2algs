@@ -93,21 +93,21 @@ public class RodCutting2 {
   public static void main(String[] args) {
     int n = Integer.parseInt(args[0]);
 
-    int rec = RodCutting.recursive(n);
+    int rec = RodCutting2.recursive(n);
     System.out.println("Recursive: " + rec);
 
-    int topDown = RodCutting.topDownDP(n);
+    int topDown = RodCutting2.topDownDP(n);
     System.out.println("Tod-down with memoization: " + topDown);
 
-    int bottomUp = RodCutting.bottomUpDP(n);
+    int bottomUp = RodCutting2.bottomUpDP(n);
     System.out.println("Bottom-up: " + bottomUp);
 
     int[] r = new int[n + 1];
     int[] s = new int[n + 1];
     r[0] = 0;
     s[0] = 0;
-    RodCutting.bottomUpDPEx(n, r, s);
+    RodCutting2.bottomUpDPEx(n, r, s);
     System.out.println("Bottom-up Ex: " + r[n]);
-    RodCutting.printSol(n, s);
+    RodCutting2.printSol(n, s);
   }
 }
