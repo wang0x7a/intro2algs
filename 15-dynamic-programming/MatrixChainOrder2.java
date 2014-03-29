@@ -11,7 +11,8 @@ public class MatrixChainOrder2 {
 
     int res = Integer.MAX_VALUE;
     for (int k = i; k < j; k++) {
-      int tmp = recursive(i, k) + recursive(k + 1, j) + chain[i - 1] * chain[k] * chain[j];
+      int tmp = recursive(i, k) + recursive(k + 1, j) 
+        + chain[i - 1] * chain[k] * chain[j];
       if (tmp < res)
         res = tmp;
     }
@@ -57,9 +58,38 @@ public class MatrixChainOrder2 {
   }
 
   public static void bottomUpDP() {
+    int n = chain.length;
+
+    int[][] r = new int[n][n];
+    int[][] s = new int[n][n];
+    
+    for (int i = 0; i < n; i++)
+      r[i][i] = 0;
+
+    bottomUpDPHelper(r, s);
+    System.out.println(r[1][n - 1]);
+    print(s);
   }
 
   public static void bottomUpDPHelper(int[][] r, int[][] s) {
+    int n = r[0].length;
+
+    for (int j = 2; j < n; j++) {
+      r[j - 1][j] = chain[j - 2] * chain[j - 1] * chain[j];
+      for (int i = j - 1; i > 0; i--) {
+        int res = Integer.MAX_VALUE;
+        for (int k = i; k < j; k++) {
+          int tmp = r[i][k] + r[k + 1][j] + chain[i - 1] * chain[k] * chain[j];
+          if (tmp < res) {
+            res = tmp;
+            r[i][j] = res;
+            s[i][j] = k;
+          }
+        }
+      }
+    }
+
+    return;
   }
 
   public static void print(int[][] s) {
@@ -85,5 +115,6 @@ public class MatrixChainOrder2 {
     int res = MatrixChainOrder2.topDownDP();
 
     System.out.println(res);
+    MatrixChainOrder2.bottomUpDP();
   }
 }
