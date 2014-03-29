@@ -75,7 +75,7 @@ public class MatrixChainOrder2 {
     int n = r[0].length;
 
     for (int j = 2; j < n; j++) {
-      r[j - 1][j] = chain[j - 2] * chain[j - 1] * chain[j];
+      //r[j - 1][j] = chain[j - 2] * chain[j - 1] * chain[j];
       for (int i = j - 1; i > 0; i--) {
         int res = Integer.MAX_VALUE;
         for (int k = i; k < j; k++) {
