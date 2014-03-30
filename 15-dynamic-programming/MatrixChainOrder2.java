@@ -69,6 +69,7 @@ public class MatrixChainOrder2 {
     bottomUpDPHelper(r, s);
     System.out.println(r[1][n - 1]);
     print(s);
+    System.out.println();
   }
 
   public static void bottomUpDPHelper(int[][] r, int[][] s) {
