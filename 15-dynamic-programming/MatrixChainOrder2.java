@@ -74,6 +74,16 @@ public class MatrixChainOrder2 {
   public static void bottomUpDPHelper(int[][] r, int[][] s) {
     int n = r[0].length;
 
+    /* Visually, bottom-up approach can be seen as filling in a N * N matrix (r)
+     * from the left-most column (r[][1]) to the rignt-most (r[][n - 1]). Each
+     * iteration only considers the right-most column at the moment (r[][j]).
+     * The tricky part is that jth column is filled in from right-most entry 
+     * (r[j - 1][j], instead of from r[1][j - 1]). This would not look like a
+     * bottom up approach, but it literally is, since for a given column, this 
+     * filling-in scheme is actually starts from the shortest length, wrt j, to 
+     * the farest entry. (r[j - 1][j] to r[j][1])
+     * */
+
     for (int j = 2; j < n; j++) {
       //r[j - 1][j] = chain[j - 2] * chain[j - 1] * chain[j];
       for (int i = j - 1; i > 0; i--) {
